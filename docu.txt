@@ -1,0 +1,22 @@
+https://medium.com/hivelab-dev/vue-express-mysql-part1-98f68408d444
+https://github.com/osamhack2020/Cloud_BlurPencil_GonNyong4
+
+{
+  "name": "vue-with-express",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "server": "cd server && npm start",
+    "client": "cd client && npm run serve",
+    "start": "concurrently \"npm run client\" \"npm run server\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "concurrently": "^5.3.0"
+  }
+}
+

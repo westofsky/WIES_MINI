@@ -14,3 +14,4 @@ yarn-debug.log*
 yarn-error.log*
 
 goorm.manifest
+vue.config.js

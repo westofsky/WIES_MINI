@@ -1,10 +1,7 @@
 <template>
   <div class="Main">
 	<div class ="menu">
-		<h1>WIES-MINI</h1>
-		<hr color=lightblue>
-		<p>아무말이나 적어봄</p>
-		<router-link to="/home">Go to home</router-link>
+		<router-view></router-view>
 	</div>
   </div>
 </template>
@@ -38,7 +35,7 @@ export default {
 		text-align: center;
 		background: rgba( 255, 255, 255, 0.5 );
 		min-width: 400px;
-		padding: 40px 0px; 
-		border-radius: 5%;
+		padding: 40px 0px;
+		border-radius : 10px;
 	}
 </style>

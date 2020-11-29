@@ -1,20 +1,18 @@
 <template>
 	<div class="Login">
 		<div class="wrap_form">
-			<p>로그인 페이지</p>
+			<router-link to="/" style="margin-right:15px">홈</router-link><br>
+			<p>로그인</p>
 			<div class="login-input-container">
 				<b-form-group class="login-input-id" label="이메일">
-					<b-form-input v-model="user.input_id" type="text" placeholder="Your ID" />
+					<b-form-input ref="input_email" v-model="user.input_id" type="text"/>
 				</b-form-group>
 				<b-form-group class="login-input-pw" label="비밀번호">
-					<b-form-input v-model="user.input_pw" type="text" placeholder="Your Password" />
+					<b-form-input v-model="user.input_pw" type="text"/>
 				</b-form-group>
-				<div class="login-input-btn">
-					<b-button variant="outline-primary">로그인</b-button>
-				</div>
+				<b-button class="login-input-btn" variant="outline-primary">로그인</b-button>
 			</div>
-			<router-link to="/">Go to home</router-link>
-			<router-link to="/register">Go to register</router-link>
+			<router-link to="/register" style="margin-left:15px">아직 계정이 없나요?</router-link>
 		</div>
 	</div>
 </template>
@@ -29,6 +27,9 @@
 				}
 			}
 		},
+		mounted(){
+			this.$refs.input_email.focus();
+		}
 	};
 </script>
 <style scoped lang="scss">
@@ -39,8 +40,11 @@
 		width: 70%;
 		text-align: left;
 		margin: 0 auto;
-		.login-input-btn{
-			text-align : center;
-		}
 	}
+	.login-input-container .login-input-btn{
+			width: 100%;
+			text-align : center;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
 </style>

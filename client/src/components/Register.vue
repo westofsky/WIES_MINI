@@ -1,21 +1,21 @@
 <template>
 	<div class="Register">
-		<p>Register</p>
+		<p>회원가입</p>
 		<div class="register-input-container">
 			<b-form-group label="이메일" valid-feedback="사용 가능한 이메일입니다" :invalid-feedback="invalidEmail" :state="emailState">
-				<b-form-input placeholder="ex) example@mail.com" type="email" v-model="email" :state="emailState" trim></b-form-input>
+				<b-form-input ref="input_email" type="email" v-model="email" :state="emailState" trim></b-form-input>
 			</b-form-group>
 			<b-form-group label="비밀번호" valid-feedback="사용 가능한 비밀번호입니다" :invalid-feedback="invalidPassword" :state="passwordState">
-				<b-form-input placeholder="8자리 이상" type="password" v-model="password" :state="passwordState" trim></b-form-input>
+				<b-form-input type="password" v-model="password" :state="passwordState" trim></b-form-input>
 			</b-form-group>
 			<b-form-group label="비밀번호 확인" valid-feedback="확인" :invalid-feedback="invalidCheckPassword" :state="checkPasswordState">
-				<b-form-input placeholder="8자리 이상" type="password" v-model="checkPassword" :state="checkPasswordState" trim></b-form-input>
+				<b-form-input type="password" v-model="checkPassword" :state="checkPasswordState" trim></b-form-input>
 			</b-form-group>
 			<b-button :disabled="!emailState || !passwordState || !checkPasswordState" @click="onBtnClicked" class="register-input-btn" variant="primary">
 				계정 생성
 			</b-button>
 		</div>
-		<router-link to="/">Go to home</router-link>
+		<router-link to="/">홈</router-link>
 	</div>
 </template>
 <script>
@@ -28,6 +28,9 @@
 				checkPassword: '',
 				emailPattern: /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
 			};
+		},
+		mounted(){
+			this.$refs.input_email.focus();	
 		},
 		computed: {
 			emailState() {
@@ -44,9 +47,6 @@
 				return this.password.length >= 8;
 			},
 			invalidPassword() {
-				if (this.password.length == 0) {
-					return '비밀번호를 입력해주세요';
-				}
 				return '비밀번호는 최소 8자리 이상이어야 합니다';
 			},
 			checkPasswordState(){
@@ -74,6 +74,7 @@
     }
     .register-input-container .register-input-btn {
 		width: 100%;
+		margin-top: 20px;
 		margin-bottom: 20px;
 		text-align: center;
     }

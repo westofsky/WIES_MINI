@@ -1,6 +1,6 @@
 <template>
 	<div class="Userpage">
-		{{$route.params.userid}}<br>
+		{{$route.params.user_email}}<br>
 		<router-link to="/">홈으로가기</router-link><br>
 	</div>
 </template>
@@ -8,7 +8,7 @@
 	export default {
 		name: 'Userpage',
 		props : {
-			userid : {
+			user_email : {
 				type : String,
 				default : '',
 			},

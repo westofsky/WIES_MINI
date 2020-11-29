@@ -8,16 +8,16 @@ var User = require('../schemas/user');
  */
 
 router.get('/', function(req, res, next) {
-	const user_id = req.query.user_id;
-		console.log(user_id);
+	const user_email = req.query.user_email;
+		console.log(user_email);
 	
-	User.findOne({ user_id: user_id }, { user_pw: false })
+	User.findOne({ user_email: user_email }, { user_pw: false })
 		.then((result) => {
 			console.log(result);
 			if (result)
-				res.json(200, { success:true, data:result, message:`${user_id} 의 정보` });
+				res.json(200, { success:true, data:result, message:`${user_email} 의 정보` });
 			else
-				res.json(404, { success:false, message:`${user_id}는 없는 유저입니다.` });
+				res.json(404, { success:false, message:`${user_email}는 없는 유저입니다.` });
 		})
 		.catch((err) => {
 			console.error(err);
@@ -41,7 +41,7 @@ router.post('/register', function(req, res, next) {
 		.catch((err) => {
 		    if (err) {
 				if (err.name === 'MongoError' && err.code === 11000)
-					res.send({ success: false, message: '이미 존재한 아이디입니다.' });
+					res.send({ success: false, message: '헤당 이메일은 이미 사용중입니다!' });
 				else
 					next(err);
 			}
@@ -56,28 +56,28 @@ router.post('/register', function(req, res, next) {
  */
 router.post('/login', function(req, res, next) {
 	const user = new User({
-		user_id: req.body.user.input_id,
+		user_email: req.body.user.input_email,
 		user_pw: req.body.user.input_pw,
 	});
 	let user_oid = '';
 	
-	User.findOne({ user_id: user.user_id })
+	User.findOne({ user_email: user.user_email })
 		.then((result) => {
 			if (!result) {
 				// 이메일도 비밀번호도 틀림
-				return { success:false, message:`아이디도 비밀번호도 틀림` };
+				return { success:false, message:`이메일을 확인해주세요` };
 			} else if (result.user_pw === user.user_pw) {
 				// 로그인 성공
 				user_oid = result._id;
-				return User.updateOne({ user_id: user.user_id }, { user_updatedAt: new Date().toISOString() });		
+				return User.updateOne({ user_email: user.user_email }, { user_updatedAt: new Date().toISOString() });		
 			} else {
 				// 이메일만 성공
-				return { success:false, message:`비밀번호가 틀림` };
+				return { success:false, message:`비밀번호를 확인해주세요` };
 			}
 		})
 		.then((result) => {
 			if (result.ok) 
-				res.json(200, { success:true, message:`${user.user_id} : 로그인 성공`, _id:user_oid });
+				res.json(200, { success:true, message:`${user.user_email} : 로그인 성공`, _id:user_oid });
 			else
 				res.json(200, result);
 			

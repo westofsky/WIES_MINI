@@ -4,13 +4,13 @@
 			<router-link to="/" style="margin-right:15px">홈</router-link><br>
 			<p>로그인</p>
 			<div class="login-input-container">
-				<b-form-group class="login-input-id" label="이메일">
-					<b-form-input ref="input_email" v-model="user.input_id" type="text"/>
+				<b-form-group class="login-input-email" label="이메일">
+					<b-form-input ref="ref_input_email" v-model="user.input_email" type="text"/>
 				</b-form-group>
 				<b-form-group class="login-input-pw" label="비밀번호">
 					<b-form-input v-model="user.input_pw" type="text"/>
 				</b-form-group>
-				<b-button class="login-input-btn" @click = "login" variant="outline-primary">로그인</b-button>
+				<b-button class="login-input-btn" @click = "onBtnLoginClicked" variant="outline-primary">로그인</b-button>
 			</div>
 			<router-link to="/register" style="margin-left:15px">아직 계정이 없나요?</router-link>
 		</div>
@@ -22,45 +22,36 @@
 		data(){
 			return {
 				user : {
-					input_id : '',
+					input_email : '',
 					input_pw : '',
 				}
 			}
 		},
 		methods :{
-			login(){
-				if(this.user.input_id && this.user.input_pw){
+			onBtnLoginClicked(){
+				if(this.user.input_email && this.user.input_pw){
 					this.$http.post('/api/users/login', {
 						user: this.user
 					}).then(
-					(res) => {  //로그인 
+					(res) => {
 						if (res.data.success == true){
-							alert("로그인에 성공하였습니다.");
-							this.$router.push({name: 'Userpage', params: {userid : this.user.input_id}})
+							this.$router.push({name: 'Userpage', params: {user_email : this.user.input_email}})
 						}
 						else{
-							if(res.data.message == '아이디도 비밀번호도 틀림'){
-								alert("존재하지 않는 아이디입니다.");
-							}
-							else{
-								alert("비밀번호가 잘못되었습니다.");
-							}
+							alert(res.data.message);
 						}	
 					},
-					(err) => { // error 를 보여줌
-						alert('Login failed! please check your id or pard');
+					(err) => { 
+						// error 를 보여줌
 						console.log(err);
 					}).catch((err) => {
 						console.log(err);
 					})
 				}
-				else{
-					alert("입력 확인요~");
-				}
 			},
 		},
 		mounted(){
-			this.$refs.input_email.focus();
+			this.$refs.ref_input_email.focus();
 		}
 	};
 </script>

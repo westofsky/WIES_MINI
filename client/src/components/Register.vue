@@ -11,7 +11,7 @@
 			<b-form-group label="비밀번호 확인" valid-feedback="확인" :invalid-feedback="invalidCheckPassword" :state="checkPasswordState">
 				<b-form-input type="password" v-model="checkPassword" :state="checkPasswordState" trim></b-form-input>
 			</b-form-group>
-			<b-button :disabled="!emailState || !passwordState || !checkPasswordState" @click="onBtnClicked" class="register-input-btn" variant="primary">
+			<b-button :disabled="!emailState || !passwordState || !checkPasswordState" @click="onRegisterButtonClicked" class="register-input-btn" variant="primary">
 				계정 생성
 			</b-button>
 		</div>
@@ -30,13 +30,12 @@
 			};
 		},
 		methods :{
-			onBtnClicked(){
+			onRegisterButtonClicked(){
 				this.$http.post('/api/users/register', { 
 					user_email : this.email,
 					user_password : this.password
 				}).then((res) => {
 					if (res.data.success == true) {
-						alert(res.data.message);
 						this.$router.push('/login')  // 로그인한 뒤 메인 페이지로 이동시켜야함
 					}
 					if (res.data.success == false) {

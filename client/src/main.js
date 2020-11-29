@@ -10,7 +10,7 @@ Vue.use(BootstrapVue)
 
 Vue.prototype.$http = axios
 
-Vue.prototype.serverUrl = 'https://mgserver.run.goorm.io/'
+Vue.prototype.serverUrl = 'https://wiesminiweb.run.goorm.io/'
 
 new Vue({
   render: h => h(App),

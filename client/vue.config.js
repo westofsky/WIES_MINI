@@ -5,7 +5,7 @@ module.exports = {
 	devServer : {
 		proxy : { // proxyTable 설정
 			'/api' : {
-				target : 'https://Input_Your_Server_Ip.run.goorm.io/api',
+				target : 'https://rwiesminiweb.run.goorm.io/api',
 				changeOrigin : true,
 				pathRewrite : {
 					'^/api' : ''

@@ -36,7 +36,11 @@
 					user_password : this.password
 				}).then((res) => {
 					if (res.data.success == true) {
-						this.$router.push('/login')  // 로그인한 뒤 메인 페이지로 이동시켜야함
+						// 인증 이메일 전송 구현 필요
+						
+						
+						// 인증 이메일 확인 창으로 넘어가기
+						this.$router.push({name: 'CheckEmail', params: {input_email: this.email}});
 					}
 					if (res.data.success == false) {
 						alert(res.data.message);

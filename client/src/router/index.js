@@ -5,6 +5,7 @@ import Userpage from '../views/Userpage.vue'
 import Home from '../components/Home.vue'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
+import CheckEmail from '../components/CheckEmail.vue'
 
 Vue.use(VueRouter)
 
@@ -17,17 +18,23 @@ const routes = [
 			{
 				path: '/',
 				name: 'Home',
-				component: Home,
+				component: Home
 			},
 			{
 				path: '/login',
 				name: 'Login',
-				component: Login,
+				component: Login
 			},
 			{
 				path: '/register',
 				name: 'Register',
-				component: Register,
+				component: Register
+			},
+			{
+				path: '/checkemail',
+				name: 'CheckEmail',
+				component: CheckEmail,
+				props: true
 			}
 		]
 	},

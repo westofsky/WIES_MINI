@@ -29,6 +29,25 @@
 				emailPattern: /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
 			};
 		},
+		methods :{
+			onBtnClicked(){
+				this.$http.post('/api/users/register', { 
+					user_email : this.email,
+					user_password : this.password
+				}).then((res) => {
+					if (res.data.success == true) {
+						alert(res.data.message);
+						this.$router.push('/login')  // 로그인한 뒤 메인 페이지로 이동시켜야함
+					}
+					if (res.data.success == false) {
+						alert(res.data.message);
+					}
+				}).catch(function (error) {
+					alert('error')
+					console.log(error)
+				})
+			}
+		},
 		mounted(){
 			this.$refs.input_email.focus();	
 		},
@@ -59,8 +78,6 @@
 				return '비밀번호가 일치하지 않습니다 ';
 			},
 		},
-		methods:{
-		}
     }
 </script>
 <style>

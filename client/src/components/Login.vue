@@ -10,7 +10,7 @@
 				<b-form-group class="login-input-pw" label="비밀번호">
 					<b-form-input v-model="user.input_pw" type="text"/>
 				</b-form-group>
-				<b-button class="login-input-btn" variant="outline-primary">로그인</b-button>
+				<b-button class="login-input-btn" @click = "login" variant="outline-primary">로그인</b-button>
 			</div>
 			<router-link to="/register" style="margin-left:15px">아직 계정이 없나요?</router-link>
 		</div>
@@ -26,6 +26,38 @@
 					input_pw : '',
 				}
 			}
+		},
+		methods :{
+			login(){
+				if(this.user.input_id && this.user.input_pw){
+					this.$http.post('/api/users/login', {
+						user: this.user
+					}).then(
+					(res) => {  //로그인 
+						if (res.data.success == true){
+							alert("로그인에 성공하였습니다.");
+							this.$router.push({name: 'Userpage', params: {userid : this.user.input_id}})
+						}
+						else{
+							if(res.data.message == '아이디도 비밀번호도 틀림'){
+								alert("존재하지 않는 아이디입니다.");
+							}
+							else{
+								alert("비밀번호가 잘못되었습니다.");
+							}
+						}	
+					},
+					(err) => { // error 를 보여줌
+						alert('Login failed! please check your id or pard');
+						console.log(err);
+					}).catch((err) => {
+						console.log(err);
+					})
+				}
+				else{
+					alert("입력 확인요~");
+				}
+			},
 		},
 		mounted(){
 			this.$refs.input_email.focus();

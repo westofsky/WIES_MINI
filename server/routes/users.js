@@ -56,8 +56,8 @@ router.post('/register', function(req, res, next) {
  */
 router.post('/login', function(req, res, next) {
 	const user = new User({
-		user_id: req.body.user.id,
-		user_pw: req.body.user.password
+		user_id: req.body.user.input_id,
+		user_pw: req.body.user.input_pw,
 	});
 	let user_oid = '';
 	

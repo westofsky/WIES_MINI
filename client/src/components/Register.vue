@@ -2,31 +2,24 @@
 	<div class="Register">
 		<p>Register</p>
 		<div class="register-input-container">
-			<b-form-group
-				label="이메일"
-				:invalid-feedback="invalidEmail"
-				:state="emailState">
+			<b-form-group label="이메일" valid-feedback="사용 가능한 이메일입니다" :invalid-feedback="invalidEmail" :state="emailState">
 				<b-form-input id="input-1" type="email" v-model="email" :state="emailState" trim></b-form-input>
 			</b-form-group>
-			<b-form-group
-				label="비밀번호"
-				:invalid-feedback="invalidPassword"
-				:state="passwordState">
-				<b-form-input id="input-1" type="text" v-model="password" :state="passwordState" trim></b-form-input>
+			<b-form-group label="비밀번호" valid-feedback="사용 가능한 비밀번호입니다" :invalid-feedback="invalidPassword" :state="passwordState">
+				<b-form-input id="input-1" type="password" v-model="password" :state="passwordState" trim></b-form-input>
 			</b-form-group>
-			<b-form-group
-				label="비밀번호 확인"
-				:invalid-feedback="invalidCheckPassword"
-				:state="checkPasswordState">
-				<b-form-input id="input-1" type="text" v-model="checkPassword" :state="checkPasswordState" trim></b-form-input>
+			<b-form-group label="비밀번호 확인" valid-feedback="확인" :invalid-feedback="invalidCheckPassword" :state="checkPasswordState">
+				<b-form-input id="input-1" type="password" v-model="checkPassword" :state="checkPasswordState" trim></b-form-input>
 			</b-form-group>
-			<b-button class="register-input-btn" variant="primary"> 계정 생성 </b-button>
+			<b-button :disabled="!emailState || !passwordState || !checkPasswordState" @click="onBtnClicked" class="register-input-btn" variant="primary">
+				계정 생성
+			</b-button>
 		</div>
 		<router-link to="/">Go to home</router-link>
 	</div>
 </template>
 <script>
-	export default {
+    export default {
 		name: 'Register',
 		data() {
 			return {
@@ -54,7 +47,6 @@
 				if (this.password.length == 0) {
 					return '비밀번호를 입력해주세요';
 				}
-				
 				return '비밀번호는 최소 8자리 이상이어야 합니다';
 			},
 			checkPasswordState(){
@@ -64,23 +56,25 @@
 				if (this.checkPassword.length == 0) {
 					return '비밀번호를 입력해주세요';
 				}
-				
 				return '비밀번호가 일치하지 않습니다 ';
 			},
 		},
-	};
+		methods:{
+		}
+    }
 </script>
 <style>
 	p {
-			font-size: 30px;
+		font-size: 30px;
 	}
-	
-	.register-input-container {
+    .register-input-container {
 		width: 70%;
 		text-align: left;
 		margin: 0 auto;
-	}
-	.register-input-container .register-input-btn {
-			text-align : center;
-	}
+    }
+    .register-input-container .register-input-btn {
+		width: 100%;
+		margin-bottom: 20px;
+		text-align: center;
+    }
 </style>

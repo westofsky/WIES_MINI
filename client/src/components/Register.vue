@@ -3,13 +3,13 @@
 		<p>Register</p>
 		<div class="register-input-container">
 			<b-form-group label="이메일" valid-feedback="사용 가능한 이메일입니다" :invalid-feedback="invalidEmail" :state="emailState">
-				<b-form-input id="input-1" type="email" v-model="email" :state="emailState" trim></b-form-input>
+				<b-form-input placeholder="ex) example@mail.com" type="email" v-model="email" :state="emailState" trim></b-form-input>
 			</b-form-group>
 			<b-form-group label="비밀번호" valid-feedback="사용 가능한 비밀번호입니다" :invalid-feedback="invalidPassword" :state="passwordState">
-				<b-form-input id="input-1" type="password" v-model="password" :state="passwordState" trim></b-form-input>
+				<b-form-input placeholder="8자리 이상" type="password" v-model="password" :state="passwordState" trim></b-form-input>
 			</b-form-group>
 			<b-form-group label="비밀번호 확인" valid-feedback="확인" :invalid-feedback="invalidCheckPassword" :state="checkPasswordState">
-				<b-form-input id="input-1" type="password" v-model="checkPassword" :state="checkPasswordState" trim></b-form-input>
+				<b-form-input placeholder="8자리 이상" type="password" v-model="checkPassword" :state="checkPasswordState" trim></b-form-input>
 			</b-form-group>
 			<b-button :disabled="!emailState || !passwordState || !checkPasswordState" @click="onBtnClicked" class="register-input-btn" variant="primary">
 				계정 생성

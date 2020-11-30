@@ -35,7 +35,11 @@
 					}).then(
 					(res) => {
 						if (res.data.success == true){
-							this.$router.push({name: 'Userpage', params: {user_email : this.user.input_email}})
+							alert("로그인에 성공하였습니다.");
+							this.$router.push({name: 'Userpage',});
+							this.$router.go()
+							sessionStorage.setItem("user_email",this.user.input_email);
+							
 						}
 						else{
 							alert(res.data.message);

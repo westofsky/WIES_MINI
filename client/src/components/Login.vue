@@ -8,7 +8,7 @@
 					<b-form-input ref="ref_input_email" v-model="user.input_email" type="text"/>
 				</b-form-group>
 				<b-form-group class="login-input-pw" label="비밀번호">
-					<b-form-input v-model="user.input_pw" type="text"/>
+					<b-form-input v-model="user.input_pw" type="password" @keyup.enter="onBtnLoginClicked"/>
 				</b-form-group>
 				<b-button class="login-input-btn" @click = "onBtnLoginClicked" variant="outline-primary">로그인</b-button>
 			</div>

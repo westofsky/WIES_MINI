@@ -35,14 +35,15 @@ const routes = [
 				name: 'CheckEmail',
 				component: CheckEmail,
 				props: true
-			}
+			},
+			{
+				path : '/userpage',
+				name : 'Userpage',
+				component : Userpage,
+			},
 		]
 	},
-	{
-		path : '/userpage',
-		name : 'Userpage',
-		component : Userpage,
-	},
+	
 ]
 
 const router = new VueRouter({

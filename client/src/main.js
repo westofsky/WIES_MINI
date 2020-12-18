@@ -6,11 +6,13 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import router from "./router"
 import axios from 'axios'
 
+Vue.config.productionTip = false
+
 Vue.use(BootstrapVue)
 
 Vue.prototype.$http = axios
 
-Vue.prototype.serverUrl = 'https://wiesminiweb.run.goorm.io/'
+Vue.prototype.serverUrl = 'https://sssssss.run.goorm.io'
 
 new Vue({
   render: h => h(App),

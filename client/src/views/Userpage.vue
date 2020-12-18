@@ -1,12 +1,14 @@
 <template>
 	<div class="Userpage">
 		{{userdata}}<br>
+		
 		<p @click = "logout">
 			로그아웃
 		</p>
 	</div>
 </template>
 <script>
+	
 	export default {
 		name: 'Userpage',
 		props : {
@@ -14,6 +16,8 @@
 				type : String,
 				default : '',
 			},
+		},
+		components : {
 		},
 		data(){
 			return{

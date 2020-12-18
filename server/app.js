@@ -9,9 +9,16 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+var http = require('http').createServer(app);
+
 var connectMongoDB = require('./schemas');
 connectMongoDB();
 // view engine setup
+
+app.all('/*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*"); next();
+});
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -27,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/api/users', users);
 
-// catch 404 and forward to error handler
+// catch 404 and forward to error handler	
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
@@ -45,6 +52,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(process.env.PORT || 3000, () => console.log('Example app listening on port 3000!'));
+http.listen(3000, function(){ 
+	console.log('@@@@@@@@@@@@@@@@@서버켜짐@@@@@@@@@@@@@@@@@@@');
+});
 
 module.exports = app;
